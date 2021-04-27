@@ -11,7 +11,9 @@ class TabList extends Component
 {
     public function render()
     {
-        return view('livewire.user.tab-list');
+        return view('livewire.user.tab-list',
+        ['Users'=>user::paginate(15),]
+       );
     }
 
     public function store(Request $request)

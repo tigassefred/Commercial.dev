@@ -1,13 +1,13 @@
 @extends('Layouts.app', ['titre'=>'Commercial - Employer'])
 @section('content')
-    <div class="d-flex justify-content-center">
-        <button class="btn btn-outline-primary">Tableau de board</button>
-        <button class="btn btn-outline-primary ml-5">Ajouter un Employer</button>
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-outline-primary mr-4">Tableau de board</button>
+        <button class="btn btn-outline-primary" type="button" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#CreateUsers">Ajouter un Employer</button>
     </div>
   <hr>
   
 
-  
+  @livewire('user.tab-list')
 
 
   <div id="CreateUsers" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
