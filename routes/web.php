@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\User\TabList;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -20,3 +21,4 @@ Route::get('/', function () {
 
 
 Route::get('employer', [UserController::class, 'index'])->name('user.index');
+Route::post('employer' , [TabList::class , 'store']);
