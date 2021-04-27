@@ -9,6 +9,15 @@ function SuijeVide($variable) {
       document.getElementById(balise).classList.remove('d-none')
   }
 
+  function isNumberKey(evt) {
+    let ikeyCode = (evt.which) ? evt.which : evt.keyCode;
+    if (ikeyCode != 46 && ikeyCode > 31 && (ikeyCode < 48 || ikeyCode > 57)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   document.getElementById('userModalForm').addEventListener('submit', function(event){
      event.preventDefault();
      let form = $(this).serialize();
@@ -52,6 +61,4 @@ function SuijeVide($variable) {
              
        }
      });
-    
-  
   });
