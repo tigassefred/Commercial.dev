@@ -20,5 +20,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('employer', [UserController::class, 'index'])->name('user.index');
+Route::get('employer',[UserController::class, 'index'])->name('user.index');
+Route::get('employer/{ref}', [UserController::class, 'show'])->name('user.show');
 Route::post('employer' , [TabList::class , 'store']);
+Route::post('employer/{ref}/delete', [TabList::class, 'destroy']);

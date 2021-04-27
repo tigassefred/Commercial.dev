@@ -131,3 +131,51 @@ function SuijeVide($variable) {
     });
   
   })
+
+  $('#UserDelete').on('show.bs.modal', function(event){
+    const ref = $(event.relatedTarget).attr('value')
+    const domaine = document.location;
+    $('#deleteUser').attr('action',"/employer/"+ref+"/delete")
+});
+
+$('#ModifierUsersRole').on('show.bs.modal', function(event){
+  toggleCheck('#stockage', false)
+  toggleCheck('#vendeur', false)
+  toggleCheck('#caissier', false)
+  toggleCheck('#supervisseur', false)
+
+      const ref = $(event.relatedTarget).attr('value')
+      $("#role_ref").val(ref)
+      $.ajax({
+        type: "get",
+        url: "/roles/"+ref,
+        success: function (response) {
+           response.forEach(element => {
+                if(element.name === "Stockage"){ toggleCheck('#stockage', true)}
+                if(element.name === "Vendeur"){ toggleCheck('#vendeur', true)}
+                if(element.name === "Caissier"){ toggleCheck('#caissier', true)}
+                if(element.name === "Supervisseur"){ toggleCheck('#supervisseur', true)}
+          
+
+                
+           });
+        }
+      });
+
+      
+})
+
+$('#modalRoleUser').on('submit',function(event){
+  event.preventDefault();
+
+     const form = $(this).serialize();
+     $.ajax({
+       type: "POST",
+       url: "/roles",
+       data: form,
+       success: function (response) {
+        livewire.emit('RefreshUserList');
+        $('#ModifierUsersRole').modal('hide')
+       }
+     });
+})

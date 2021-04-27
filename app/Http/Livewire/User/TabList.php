@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\User;
 use Livewire\Component;
 use Illuminate\Http\Request;
 use App\Librairies\Utilisateur;
@@ -28,5 +29,13 @@ class TabList extends Component
          $Utilisateur->setFirstname($request->firstname);
          $Utilisateur->setPhonename($request->phone);
          $Utilisateur->SaveUser();
+    }
+
+    public function destroy($ref)
+    {  
+        $user = User::where('ref', $ref)->first();
+        $user->Role()->detach(Role::all()->pluck('id'));
+        User::destroy($user->id);  
+        return back();
     }
 }

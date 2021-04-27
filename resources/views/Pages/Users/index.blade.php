@@ -94,5 +94,75 @@
 </div>
 
 
+<div id="ModifierUsersRole" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Administrations des Rôles</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                   <form action="" method="post" id="modalRoleUser">
+                       @csrf
+                        <div class="d-flex justify-content-between">
+                            <div class="form-check">
+                                <input id="vendeur" class="form-check-input" type="checkbox" name="vendeur" value="true">
+                                <label for="vendeur" class="form-check-label">Vendeur</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="caissier" class="form-check-input" type="checkbox" name="caissier" value="true">
+                                <label for="caissier" class="form-check-label">Cassier</label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="form-check">
+                                <input id="stockage" class="form-check-input" type="checkbox" name="stockage" value="true">
+                                <label for="stockage" class="form-check-label">Gestionnaire de stock</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="supervisseur" class="form-check-input" type="checkbox" name="supervisseur" value="true">
+                                <label for="supervisseur" class="form-check-label">Supervisseur</label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="role_ref" id="role_ref">
+ <hr>
+                        <div class="d-flex justify-content-end mt-5">
+                            <button class="btn btn-success mr-3" type="submit">Mêttre a jour</button>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Close" >fermer</button>
+                        </div>
+                   </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="UserDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="my-modal-title">Suppimer</h5>
+                <button class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Souhaitez-vous supprimer l'utilisateur selectionner?</p>
+          
+
+            <form action="" method="POST" id="deleteUser">
+              @csrf
+                {{-- <input  type="hidden" name="delete_ref"> --}}
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-danger mr-3" type="submit">Oui</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal" aria-label="Close" >fermer</button>
+
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
 
 @endsection
