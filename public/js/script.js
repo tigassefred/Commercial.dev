@@ -18,14 +18,17 @@ function SuijeVide($variable) {
     }
   }
 
-  function toggleCheck(check, action) {
-    $(check).attr('checked',action); 
+  
+
+  function toggleCheck(check, action) { 
+       $(`#${check}`).prop('checked',action)
    }
 
   $('#userModalForm').on('show.bs.modal', function(event){
     $('#error_span_user_modal').addClass('d-none');   
   })
-  document.getElementById('userModalForm').addEventListener('submit', function(event){
+
+  $('#userModalForm').on('submit', function(event){
      event.preventDefault();
      let form = $(this).serialize();
      if (SuijeVide($('#lastname').val())) {
@@ -57,7 +60,6 @@ function SuijeVide($variable) {
        return 0;
      }
    
-   console.log('teste de precejgdsjh');
      $.ajax({
        type: "POST",
        url: "/employer",
@@ -139,10 +141,10 @@ function SuijeVide($variable) {
 });
 
 $('#ModifierUsersRole').on('show.bs.modal', function(event){
-  toggleCheck('#stockage', false)
-  toggleCheck('#vendeur', false)
-  toggleCheck('#caissier', false)
-  toggleCheck('#supervisseur', false)
+  toggleCheck('stockage', false)
+  toggleCheck('vendeur', false)
+  toggleCheck('caissier', false)
+  toggleCheck('supervisseur', false)
 
       const ref = $(event.relatedTarget).attr('value')
       $("#role_ref").val(ref)
@@ -151,13 +153,12 @@ $('#ModifierUsersRole').on('show.bs.modal', function(event){
         url: "/roles/"+ref,
         success: function (response) {
            response.forEach(element => {
-                if(element.name === "Stockage"){ toggleCheck('#stockage', true)}
-                if(element.name === "Vendeur"){ toggleCheck('#vendeur', true)}
-                if(element.name === "Caissier"){ toggleCheck('#caissier', true)}
-                if(element.name === "Supervisseur"){ toggleCheck('#supervisseur', true)}
-          
-
-                
+    
+                if(element.name === "Stockage".toLowerCase()){ toggleCheck('stockage', true)}
+                if(element.name === "Vendeur".toLowerCase()){ toggleCheck('vendeur', true)}
+                if(element.name === "Caissier".toLowerCase()){ toggleCheck('caissier', true)}
+                if(element.name === "Supervisseur".toLowerCase()){ toggleCheck('supervisseur', true)}
+         
            });
         }
       });
@@ -179,3 +180,37 @@ $('#modalRoleUser').on('submit',function(event){
        }
      });
 })
+
+$('#CreateArticleModal').on('show.bs.modal',function(){
+  console.log('testet');
+    $('#form_submit_stock  input[type = text]').val('')
+});
+
+$('#form_submit_stock').on('submit', function(event){
+        event.preventDefault();
+        const form = $(this).serialize();
+        $('#errorCreate').addClass('d-none')
+
+        $.ajax({
+          type: "POST",
+          url: "/stockage",
+          data: form,
+          success: function (response) {
+
+               if(response.statut === 'errors') 
+               {
+                   $('#errorCreate').text(response.message)
+                   $('#errorCreate').removeClass('d-none')
+               }  
+               if(response.statut === 'success') 
+               {     
+                     $('#form_submit_stock  input[type = text]').val('')
+                     livewire.emit('RefreshArticle');
+                     $('#CreateArticleModal').modal('hide')  
+               } 
+               
+          }
+        });
+
+})
+

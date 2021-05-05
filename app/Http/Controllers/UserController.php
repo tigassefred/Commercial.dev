@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Librairies\Utilisateur;
 
 class UserController extends Controller
 {
@@ -16,8 +17,6 @@ class UserController extends Controller
     {
         return \view('Pages.Users.index');
     }
-
- 
     /**
      * Display the specified resource.
      *
@@ -28,6 +27,11 @@ class UserController extends Controller
     {
         $Utilisateur  = new Utilisateur($ref);
         return Response()->json($Utilisateur->UserArray());
+    }
+
+    public function Password(Request $request)
+    {
+      dd($request);
     }
 
   

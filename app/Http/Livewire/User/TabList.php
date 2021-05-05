@@ -2,17 +2,29 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Http\Request;
+use Livewire\WithPagination;
 use App\Librairies\Utilisateur;
 
 class TabList extends Component
 {
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+
+    public $qry;
+
+    protected $listeners = [
+        'RefreshUserList'=>'$refresh'
+    ];
+     
+    
     public function render()
     {
         return view('livewire.user.tab-list',
-        ['Users'=>user::paginate(15),]
+        ['Users'=>user::where('name','like', '%'.$this->qry.'%')->paginate(10),]
        );
     }
 
@@ -31,6 +43,8 @@ class TabList extends Component
          $Utilisateur->setFirstname($request->firstname);
          $Utilisateur->setPhonename($request->phone);
          $Utilisateur->SaveUser();
+
+         return response()->json($Utilisateur);
     }
 
     public function destroy($ref)
@@ -39,5 +53,16 @@ class TabList extends Component
         $user->Role()->detach(Role::all()->pluck('id'));
         User::destroy($user->id);  
         return back();
+    }
+
+    public function Statut($ref)
+    {
+        $user = User::where('ref', $ref)->first();
+        if($user === 0)
+             $user->statut = 1;
+         else
+           $user->statut  = 1;    
+
+           $user->save();
     }
 }
