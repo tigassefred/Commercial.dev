@@ -3,6 +3,7 @@
 namespace App\Librairies;
 
 use App\Models\User;
+use App\Models\Stockage;
 
 trait Reference
 {
@@ -25,15 +26,18 @@ trait Reference
 
 
 
-    public function Make_Product_ref()
+    public static function  Make_Product_ref()
     {
-        $response = true;
+        $a = 5;
         $ref = 000;
        do {
             $time = time() - 700000000;
-            $ref = "P" . (string) $time;
-           // $response = User::where('ref', $ref)->exists();
-        } while (!$response);
+            $ref =  (string) $time;
+            $response = Stockage::where('ref', $ref)->exists(); 
+           
+            if(!$response) {$a = 100;}
+        
+        } while ($a <=10);
 
         return $ref;
     }

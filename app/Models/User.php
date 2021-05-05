@@ -44,14 +44,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getEtatAttribute()
-    {
-        if($this->statut === 0)
-               return 'Desactiver';
-         else 
-               return 'Activer';      
-    
-    }
+
 
     public function Role()
     {

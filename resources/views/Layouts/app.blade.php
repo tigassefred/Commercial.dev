@@ -9,7 +9,11 @@
 </head>
 <body>
     @yield('content')
+    
+    @livewireScripts()
     <script src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
+
 </body>
 </html>
