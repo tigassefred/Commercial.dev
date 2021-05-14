@@ -3,8 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
@@ -28,7 +29,7 @@ class UserFactory extends Factory
             'phone' => '70628420',
             'lastname' => 'TIGASSE',
             'firstname' => 'Frederic',
-            'password' => '$2y$10$MP/UkRO5PvGAK0ZXExCXrubZKJOecaFv6BEtWFMFE1dcPcgIOVt0u', // password
+            'password' => Hash::make('teste'), // password
             'statut' => true,
         ];
     }

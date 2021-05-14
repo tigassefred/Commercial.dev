@@ -1,3 +1,5 @@
+
+
 function SuijeVide($variable) {
     return ($variable.trim().length > 0) ?  false : true;
   }
@@ -182,9 +184,10 @@ $('#modalRoleUser').on('submit',function(event){
 })
 
 $('#CreateArticleModal').on('show.bs.modal',function(){
-  console.log('testet');
+    document.getElementById('errorCreate').classList.add('d-none')
     $('#form_submit_stock  input[type = text]').val('')
 });
+
 
 $('#form_submit_stock').on('submit', function(event){
         event.preventDefault();
@@ -207,10 +210,53 @@ $('#form_submit_stock').on('submit', function(event){
                      $('#form_submit_stock  input[type = text]').val('')
                      livewire.emit('RefreshArticle');
                      $('#CreateArticleModal').modal('hide')  
-               } 
-               
+               }   
           }
         });
+})
+
+
+
+$('#EditArticleModal').on('show.bs.modal',function(){
+   document.getElementById('errorEdit').classList.add('d-none')
+});
+
+
+$('#form_submit_stock_edit').on('submit', function(event){
+        event.preventDefault();
+        document.getElementById('errorEdit').classList.add('d-none')
+        const ref =  $('#form_submit_stock_edit input[name=ref]').val()
+        const form = $(this).serialize();
+    
+        $.ajaxSetup({
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+        });
+
+  $.ajax({
+    type: "POST",
+    url: `stockage/${ref}`,
+    data: form,
+    success: function (response) {
+
+      if(response.statut === 'errors') 
+      {
+          $('#errorEdit').text(response.message)
+          $('#errorEdit').removeClass('d-none')
+      }  
+      if(response.statut === 'success') 
+      {     
+            $('#form_submit_stock_edit  input[type = text]').val('')
+            livewire.emit('RefreshArticle');
+            $('#EditArticleModal').modal('hide')  
+      }  
+
+    }
+  });
+
 
 })
+
+
+
+
 

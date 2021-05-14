@@ -95,37 +95,38 @@
          </button>
        </div>
        <div class="modal-body">
-         <div class="alert alert-danger d-none" id="errorCreate">
+         <div class="alert alert-danger d-none" id="errorEdit">
   
          </div>
+
              <form action id="form_submit_stock_edit">
-               @csrf
+                  <input type="hidden" name='ref'>
                   <div class="form-group">
                     <label for="">Nom de l'article</label>
-                    <input id="" class="form-control" type="text" name="Nom" wire:model="Nom">
+                    <input id="" class="form-control" type="text" name="name" wire:model="Nom">
                   </div>
 
                  <div class="row">
                       <div class="form-group col-6">
                         <label for="Prix_achat">Prix d'achat</label>
-                        <input id="Prix_achat" class="form-control" type="text" name="Prix_achat" wire:model="Prix_achat">
+                        <input id="Prix_achat" class="form-control" type="text" name="prix_achat" wire:model="Prix_achat">
                       </div>
 
                       <div class="form-group col-6">
                         <label for="Prix_vente">Prix de vente</label>
-                        <input id="Prix_vente" class="form-control" type="text" name="Prix_vente" wire:model="Prix_vente">
+                        <input id="Prix_vente" class="form-control" type="text" name="prix_vente" wire:model="Prix_vente">
                       </div>
                  </div>
 
                  <div class="row">
                       <div class="form-group col-6">
                         <label for="magazin">Quantite Magazin</label>
-                        <input id="magazin" class="form-control" type="text" name="magazin" wire:model="magazin">
+                        <input id="magazin" class="form-control" type="text" name="qte_magasin" wire:model="magazin">
                       </div>
 
                       <div class="form-group col-6">
                         <label for="boutiq">Quantite Boutique</label>
-                        <input id="boutiq" class="form-control" type="text" name="boutiq" wire:model="boutiq">
+                        <input id="boutiq" class="form-control" type="text" name="qte_boutique" wire:model="boutiq">
                       </div>
                  </div>
 
@@ -133,25 +134,50 @@
                  <div class="row">
                       <div class="form-group col-6">
                         <label for="nbrpaquet">Quantite Par Paquet</label>
-                        <input id="nbrpaquet" class="form-control" type="text" name="nbrpaquet" wire:model="nbrpaquet">
+                        <input id="nbrpaquet" class="form-control" type="text" name="nombre_paquet" wire:model="nbrpaquet">
                       </div>
 
                       <div class="form-group col-6">
                         <label for="nbrSeuil">Quantite Seuil</label>
-                        <input id="nbrSeuil" class="form-control" type="text" name="nbrSeuil" wire:model="nbrSeuil">
+                        <input id="nbrSeuil" class="form-control" type="text" name="qte_seuil" wire:model="nbrSeuil">
                       </div>
+
                  </div>
                    
                 <div class="row mr-3 ">
                      <div class="ml-auto">
-                     <button class="btn btn-primary">Enregistrer</button>
+                     <button class="btn btn-primary" type="submit">Enregistrer</button>
                      <button class="btn btn-secondary"  type="button" data-dismiss="modal" aria-label="Close" >Fermer</button>
                      </div>
                 </div>
              </form>
+
        </div>
      </div>
    </div>
  </div>
+
+
+
+
+<script>  
+     function LoadTable(option,index)
+     { 
+         const form = document.querySelectorAll(''+index);
+         let name = "";
+         form.forEach(element => {
+             name = element.getAttribute('name');
+             element.value = option[name] 
+         });
+     }
+
+
+    window.addEventListener('event-edit', event => {
+         $('#EditArticleModal').modal('show')
+         LoadTable(event.detail.response,"#form_submit_stock_edit input")
+    })
+</script>
+  
+  
 
 @endsection

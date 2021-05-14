@@ -22,6 +22,12 @@ Route::get('/', function () {
 })->name('Dashboard')->middleware('auth');
 
 
+
+Route::get('/stockage', [StockageController::class, 'index'])->name('stockage.index');
+Route::post('/stockage', [StockageController::class, 'store'])->name('stockage.store');
+Route::post('/stockage/{id}', [StockageController::class, 'update'])->name('stockage.update');
+
+
 Route::get('employer',[UserController::class, 'index'])->name('user.index');
 Route::get('employer/{ref}', [UserController::class, 'show'])->name('user.show');
 Route::post('employer' , [TabList::class , 'store']);
@@ -36,4 +42,4 @@ Route::post('password', [UserController::class, 'Password'])->name('login.passwo
 
 
 
-Route::resource('stockage', StockageController::class);
+

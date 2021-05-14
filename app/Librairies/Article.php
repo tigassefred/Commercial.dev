@@ -57,13 +57,13 @@ class Article
              Stockage::Create($Store);
         }else{
 
-            DB::table('stockage')->where('ref',$this->getRef())->update($Store);
+            DB::table('stockages')->where('ref',$this->getRef())->update($Store);
         }
     }
 
     public function deleteItem($ref)
     {
-        DB::delete('delete stockage where ref = ?', [$ref]);
+        DB::delete('delete stockages where ref = ?', [$ref]);
     }
 
     public function SetBoutique($ref,$qte,$action)
@@ -84,7 +84,7 @@ class Article
 
        $this->setNbrBoutique($Nbr);
 
-       DB::update('update stockage set qte_boutique = ? where ref = ?', [$this->getNbrBoutique(), $ref]);
+       DB::update('update stockages set qte_boutique = ? where ref = ?', [$this->getNbrBoutique(), $ref]);
     }
     
 
@@ -106,7 +106,7 @@ class Article
 
        $this->setNbrBoutique($Nbr);
 
-       DB::update('update stockage set qte_boutique = ? where ref = ?', [$this->getNbrBoutique(), $ref]);
+       DB::update('update stockages set qte_boutique = ? where ref = ?', [$this->getNbrBoutique(), $ref]);
     }
 
 

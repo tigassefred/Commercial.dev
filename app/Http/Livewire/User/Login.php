@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Route;
 
 class Login extends Component
 {
-    public $telephone = 75909172;
-    public $password = "teste",$message,$css="d-none";
+    public $telephone='70628420';
+    public $password ='teste', $message,$css="d-none";
 
     public function render()
     {
@@ -20,6 +20,16 @@ class Login extends Component
     public function Connecting()
     {
           $user = Utilisateur::where('phone', $this->telephone)->first();
+          Auth::attempt(['phone' => $this->telephone, 'password' => $this->password]);
+
+          if( Auth::user() !== null)
+          { 
+            return redirect()->to('/');
+          }else{
+              dd( Auth::user());
+            return redirect()->to('/');
+          }
+    
           if ($user !== NULL) {
                if (Hash::check($this->password, $user->password)) {
                    if($this->password === 'teste')

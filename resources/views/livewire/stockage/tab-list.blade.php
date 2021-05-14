@@ -86,9 +86,9 @@
     
                             <td class="text-center">
                                 <div class="d-flex justify-content-center">
-                                    @if ($article->isEnabled)
+                                    @if ($article->Enabled)
                                         <button class="btn btn-info btn-sm"
-                                            wire:click="change_state('{{ $article->ref }}', 0)" >Desactiver</button>
+                                            wire:click="change_state('{{ $article->ref }}', 0)" >Desactiver </button>
                                     @else
                                         <button class="btn btn-success btn-sm"
                                             wire:click="change_state('{{ $article->ref }}', 1)">Activer</button>
@@ -102,10 +102,9 @@
                                 @cannot('is_manager')
 
                                 <button class="btn btn-info btn-sm btn_edit_article"
-                                wire:click="SelectItem('{{ $article->ref }}', 'edit') ">Edit</button>
+                                wire:click="launchToEdit('{{ $article->ref }}') ">Edit</button>
                                  <button class="btn btn-danger btn-sm ml-2"
                                      wire:click="SelectItem('{{ $article->ref }}', 'delete') ">Delete</button>
-                                    
                                 @endcannot
                                 </div>
                             </td>

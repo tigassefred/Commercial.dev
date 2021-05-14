@@ -19,20 +19,22 @@ class TabList extends Component
         ]);
     }
 
-     public function change_state($ref,$data)
+     public function change_state($ref)
      {
-        
-         $article = Stockage::where('ref',$ref)->first();
-     
-        if($article->statut == 0)
-        {
-             $article->statut = 1;
-        }else{
-            $article->statut = 0;  
-        }
-  
-        $article->save();
+           $article = Stockage::where('ref',$ref)->first();
+           ($article->statut == 0) ? $article->statut = 1: $article->statut = 0;  
+            $article->save();
+     }
 
-        dd($article);
+
+     public function launchToEdit($ref)
+     {  
+           $response = Stockage::where('ref',$ref)->first();
+           $this->dispatchBrowserEvent('event-edit', ['response' => $response]);
+     }
+
+     public function update()
+     {
+         
      }
 }
