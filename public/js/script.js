@@ -1,5 +1,5 @@
 
-
+"use Strict";
 function SuijeVide($variable) {
     return ($variable.trim().length > 0) ?  false : true;
   }

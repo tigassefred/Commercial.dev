@@ -3,15 +3,17 @@
 
     @include('Pages.Stockage.navigation')
 
-     @livewire('stockage.tab-list')
+    
+
+ @livewire('stockage.gestion-stockage') 
+
+
+
+
 
 
 @include('Pages.Stockage.Modal.create_article')
 @include('Pages.Stockage.Modal.edit_article')
-
-
-
-
 
 <script>  
      function LoadTable(option,index)
@@ -23,7 +25,6 @@
              element.value = option[name] 
          });
      }
-
 
     window.addEventListener('event-edit', event => {
          $('#EditArticleModal').modal('show')

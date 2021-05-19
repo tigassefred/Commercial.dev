@@ -78,4 +78,16 @@ class StockageController extends Controller
 
         }
 
+
+        public function index_stockage()
+        {
+            return view('Pages.Stockage.Gestion_stockage');
+        }
+
+        public function index_mouvement()
+        {
+            return view('Pages.Stockage.mouvement_stockage');
+        }
+
+
 }

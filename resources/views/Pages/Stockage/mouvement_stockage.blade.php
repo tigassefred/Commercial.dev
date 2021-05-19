@@ -3,7 +3,10 @@
 
     @include('Pages.Stockage.navigation')
 
-     @livewire('stockage.tab-list')
+
+
+    @livewire('stockage.gestion-mouvement')
+
 
 
 @include('Pages.Stockage.Modal.create_article')

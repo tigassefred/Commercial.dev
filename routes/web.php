@@ -26,6 +26,8 @@ Route::get('/', function () {
 Route::get('/stockage', [StockageController::class, 'index'])->name('stockage.index');
 Route::post('/stockage', [StockageController::class, 'store'])->name('stockage.store');
 Route::post('/stockage/{id}', [StockageController::class, 'update'])->name('stockage.update');
+Route::get('/stockage/Gestion', [StockageController::class, 'index_stockage'])->name('Gestion.index');
+Route::get('/stockage/mouvement', [StockageController::class, 'index_mouvement'])->name('mouvement.index');
 
 
 Route::get('employer',[UserController::class, 'index'])->name('user.index');
