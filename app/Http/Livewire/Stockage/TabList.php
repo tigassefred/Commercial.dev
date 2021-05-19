@@ -35,8 +35,9 @@ class TabList extends Component
            $this->dispatchBrowserEvent('event-edit', ['response' => $response]);
      }
 
-     public function update()
+     public function Delete($ref)
      {
-         
+         Stockage::destroy($ref);
      }
+
 }

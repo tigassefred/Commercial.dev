@@ -104,7 +104,8 @@
                                 <button class="btn btn-info btn-sm btn_edit_article"
                                 wire:click="launchToEdit('{{ $article->ref }}') ">Edit</button>
                                  <button class="btn btn-danger btn-sm ml-2"
-                                     wire:click="SelectItem('{{ $article->ref }}', 'delete') ">Delete</button>
+                                     wire:click="Delete('{{ $article->id }}') " data-toggle="tooltip" data-placement="top" title="Suppimer l'article"> <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                     
                                 @endcannot
                                 </div>
                             </td>
