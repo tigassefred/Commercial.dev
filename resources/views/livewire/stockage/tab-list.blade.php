@@ -102,7 +102,7 @@
                                 @cannot('is_manager')
 
                                 <button class="btn btn-info btn-sm btn_edit_article"
-                                wire:click="launchToEdit('{{ $article->ref }}') ">Edit</button>
+                                wire:click="launchToEdit('{{ $article->ref }}') " data-toggle="tooltip" data-placement="top" title="Modifier l'article" > <i class="fas fa-edit    "></i></button>
                                  <button class="btn btn-danger btn-sm ml-2"
                                      wire:click="Delete('{{ $article->id }}') " data-toggle="tooltip" data-placement="top" title="Suppimer l'article"> <i class="fa fa-trash" aria-hidden="true"></i></button>
                                      
