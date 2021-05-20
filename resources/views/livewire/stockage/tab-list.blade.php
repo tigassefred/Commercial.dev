@@ -68,10 +68,10 @@
                     <tr>
                         <th>#</th>
                         <th>Nom de l'article</th>
-                        <th width="13%">Quantite en Magasin</th>
-                        <th width="13%">Quantite en boutique</th>
+                        <th width="13%">Stock en Magasin</th>
+                        <th width="15%">Stock en boutique</th>
                         <th width="10%">Prix de vente</th>
-                        <th width="8%">{{ Str::ucfirst('état') }}</th>
+                        <th width="8%">{{ Str::ucfirst('statut') }}</th>
                         <th width="10%">action</th>
                     </tr>
                 </thead>

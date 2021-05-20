@@ -4,12 +4,19 @@ namespace App\Http\Livewire\Stockage;
 
 use Livewire\Component;
 use App\Models\Stockage;
+use Livewire\WithPagination;
 
 class TabList extends Component
 {
-    public $qte_magazin, $qte_boutique;
+
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    
+    public $qte_magazin = -1;
+    public $qte_boutique = -1;
     public $filtre = 1, $PageRow=25, $search;
-    public $Nom, $Prix_vente, $Prix_achat, $boutiq, $magazin, $nbrpaquet, $nbrSeuil, $qte_boutique_signe,$qte_magazin_signe;
+    public $Nom, $Prix_vente, $Prix_achat, $boutiq, $magazin, $nbrpaquet, $nbrSeuil;
+    public $qte_boutique_signe = '>',$qte_magazin_signe = '>';
 
     protected $listeners =['RefreshArticle'=> '$refresh'];   
     public function render()
@@ -17,7 +24,9 @@ class TabList extends Component
         return view('livewire.stockage.tab-list', [
             'Articles' => Stockage::where('statut',$this->filtre)
                       ->where('name','like','%'.$this->search.'%')
-                      ->paginate($this->PageRow),
+                      ->where('qte_magasin',$this->qte_magazin_signe,intval($this->qte_magazin))
+                      ->where('qte_boutique',$this->qte_boutique_signe,intval($this->qte_boutique))
+                      ->OrderBy('name','DESC')->paginate($this->PageRow),
         ]);
     }
 
