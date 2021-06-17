@@ -11,13 +11,6 @@
 @include('Pages.Stockage.Modal.Delete_article')
 
 
-
-
-
-<script>  
-
-</script>
-  
   
 
 @endsection

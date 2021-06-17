@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/font/css/all.min.css')}}">
     <title>{{$titre}}</title>
+    @stack('custum-styles')
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -70,8 +71,9 @@
     <script src="{{asset('js/route.js')}}" ></script>
     <script src="{{asset('js/script.js')}}" ></script>
     <script src="{{asset('js/controller.js')}}" ></script>
-
-
-
+    @stack('custom-scripts')
+    <script id="__bs_script__">//<![CDATA[
+        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.14'><\/script>".replace("HOST", location.hostname));
+    //]]></script>
 </body>
 </html>

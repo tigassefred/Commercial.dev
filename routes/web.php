@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockageController;
 use App\Http\Controllers\UserRoleController;
+use App\Http\Controllers\Ventes\VenteController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,29 @@ use App\Http\Controllers\UserRoleController;
 Route::get('/', function () {
     return view('Dashboard');
 })->name('Dashboard')->middleware('auth');
+
+/****************************VENTES**********************************************/
+   Route::get('/Vente/Terminal', [VenteController::class , 'index'])->name('Vente.index');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -54,6 +79,8 @@ Route::middleware('auth')->prefix('api')->group(function(){
     Route::get('Stockage_check_name_exist', [StockageController::class, 'index_by_name'])->name('Stockage_check_name_exist');
     Route::get('Check_if_article_existe_edit', [StockageController::class, 'index_by_name_edit'])->name('Check_if_article_existe_edit');
 });
+
+
 
 
 
