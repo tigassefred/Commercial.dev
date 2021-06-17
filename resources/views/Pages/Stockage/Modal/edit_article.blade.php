@@ -13,33 +13,35 @@
           </div>
  
               <form action id="form_submit_stock_edit">
-                   <input type="hidden" name='ref'>
+
+                   <input type="hidden" name='ref' id='ref'>
                    <div class="form-group">
                      <label for="">Nom de l'article</label>
-                     <input id="" class="form-control" type="text" name="name" wire:model="Nom">
+                     <input  class="form-control" type="text" name="name" wire:model="Nom" id="edit_article_name_id" onkeyup="Controller.Check_if_article_existe_edit()">
+                     <small class="text-danger font-weight-bold d-none" id="article_edit_samll_id">Cet Article existe deja dans votre catalogue!!!</small>
                    </div>
  
                   <div class="row">
                        <div class="form-group col-6">
                          <label for="Prix_achat">Prix d'achat</label>
-                         <input id="Prix_achat" class="form-control" type="text" name="prix_achat" wire:model="Prix_achat">
+                         <input id="Prix_achat" class="form-control" type="text" name="prix_achat" wire:model="Prix_achat" onkeypress="Controller.AllowNumberInterger(event)" >
                        </div>
  
                        <div class="form-group col-6">
                          <label for="Prix_vente">Prix de vente</label>
-                         <input id="Prix_vente" class="form-control" type="text" name="prix_vente" wire:model="Prix_vente">
+                         <input id="Prix_vente" class="form-control" type="text" name="prix_vente" wire:model="Prix_vente" onkeypress="Controller.AllowNumberInterger(event)" >
                        </div>
                   </div>
  
                   <div class="row">
                        <div class="form-group col-6">
                          <label for="magazin">Quantite Magazin</label>
-                         <input id="magazin" class="form-control" type="text" name="qte_magasin" wire:model="magazin">
+                         <input id="magazin" class="form-control" type="text" name="qte_magasin" wire:model="magazin" onkeypress="Controller.AllowNumberInterger(event)" >
                        </div>
  
                        <div class="form-group col-6">
                          <label for="boutiq">Quantite Boutique</label>
-                         <input id="boutiq" class="form-control" type="text" name="qte_boutique" wire:model="boutiq">
+                         <input id="boutiq" class="form-control" type="text" name="qte_boutique" wire:model="boutiq" onkeypress="Controller.AllowNumberInterger(event)" >
                        </div>
                   </div>
  
@@ -47,19 +49,19 @@
                   <div class="row">
                        <div class="form-group col-6">
                          <label for="nbrpaquet">Quantite Par Paquet</label>
-                         <input id="nbrpaquet" class="form-control" type="text" name="nombre_paquet" wire:model="nbrpaquet">
+                         <input id="nbrpaquet" class="form-control" type="text" name="nombre_paquet" wire:model="nbrpaquet" onkeypress="Controller.AllowNumberInterger(event)" >
                        </div>
  
                        <div class="form-group col-6">
                          <label for="nbrSeuil">Quantite Seuil</label>
-                         <input id="nbrSeuil" class="form-control" type="text" name="qte_seuil" wire:model="nbrSeuil">
+                         <input id="nbrSeuil" class="form-control" type="text" name="qte_seuil" wire:model="nbrSeuil" onkeypress="Controller.AllowNumberInterger(event)" >
                        </div>
  
                   </div>
                     
                  <div class="row mr-3 ">
                       <div class="ml-auto">
-                      <button class="btn btn-primary" type="submit">Enregistrer</button>
+                      <button class="btn btn-primary" type="submit" id="edit_article_btn_id">Enregistrer</button>
                       <button class="btn btn-secondary"  type="button" data-dismiss="modal" aria-label="Close" >Fermer</button>
                       </div>
                  </div>

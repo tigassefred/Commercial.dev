@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Librairies\Utilisateur;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -33,6 +34,12 @@ class UserController extends Controller
     {
       dd($request);
     }
+    
+    public function logout()
+    {
+        Auth::logout();
 
+        return redirect()->route('login');
+    }
   
 }

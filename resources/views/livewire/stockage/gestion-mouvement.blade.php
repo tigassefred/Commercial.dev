@@ -15,7 +15,7 @@
               <div class="ml-2">
            
                <div class="input-group">
-                   <input class="form-control" type="text" name="" wire:model="quantite_valeur" value="0"  style="width: 60px">
+                   <input class="form-control" type="text" name="" wire:model="quantite_valeur" value="0"  style="width: 60px"  onkeypress="Controller.AllowNumberInterger(event)" >
                    <div class="input-group-append">
                        <select name="" id="" wire:model="quantite_signe" class="w-auto custom-select">
                            <option value=">">></option>
@@ -45,22 +45,22 @@
      <table class=" table table-bordered table-striped table-md" >
          <thead class="thead-light" >
              <tr>
-                 <th>#</th>
+                 <th width="2%">#</th>
                  <th>Nom de l'article</th>
-                 <th width="10%">Quantité</th>
-                 <th width="10%">Stock Entrant</th>
+                 <th width="15%">Quantité en magasin</th>
+                 <th width="15%">Quantite entrante</th>
                  <th width="5%">action</th>
              </tr>
              </thead>
              <tbody>
       
                       @foreach ($Articles as $key => $article)
-                      <tr>
+                      <tr class="{{($article->qte_magasin < $article->qte_seuil) ? "table-danger" : ""}}">
                            <td>{{ ++$key }}</td>
                            <td>{{ $article->name }}</td>
                            <td>{{ $article->qte_magasin }}</td>
                             <td>
-                                      <input type="text" wire:model.defer="qte">
+                                      <input type="text" wire:model.defer="qte"  onkeypress="Controller.AllowNumberInterger(event)" >
                             </td>
 
                             <td class="text-center">

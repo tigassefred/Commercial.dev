@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Stockage;
 use App\Librairies\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\Return_;
 
 class StockageController extends Controller
 {
@@ -12,6 +15,25 @@ class StockageController extends Controller
        public function index()
        {
           return view('Pages.Stockage.index');
+       }
+
+       public function index_by_name()
+       {
+           return Response()->json(Stockage::where('name',Request('key'))->count());
+       }
+
+       public function index_by_name_edit()
+       {
+        return Response()->json(Stockage::where('name',Request('key'))->where('ref','!=',Request('ref'))->count());
+   //     return Response()->json([Request('key'),Request('ref')]);
+       }
+
+       public function delete()
+       {
+          DB::table('stockages')->where('id',Request('ref'))
+          ->delete();
+
+          return Response()->json(Request('ref'));
        }
 
        public function store(Request $request)

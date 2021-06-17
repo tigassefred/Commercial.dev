@@ -15,32 +15,37 @@
                 @csrf
                    <div class="form-group">
                      <label for="">Nom de l'article</label>
-                     <input id="" class="form-control" type="text" name="Nom" wire:model="Nom">
+                     <input id="Create_article_name_id" class="form-control" type="text"
+                           name="Nom" wire:model="Nom" onkeyup="Controller.Check_if_article_existe()">
+                           <small class="text-danger font-weight-bold d-none" id="article_add_samll_id">Cet Article existe deja dans votre catalogue!!!</small>
                    </div>
  
                   <div class="row">
                        <div class="form-group col-6">
                          <label for="Prix_achat">Prix d'achat</label>
                          <input id="Prix_achat" class="form-control" type="text" name="Prix_achat" wire:model="Prix_achat"
-                           onkeypress="isNumberKey(event)"
+                           onkeypress="Controller.AllowNumberInterger(event)"
                          >
                        </div>
  
                        <div class="form-group col-6">
                          <label for="Prix_vente">Prix de vente</label>
-                         <input id="Prix_vente" class="form-control" type="text" name="Prix_vente" wire:model="Prix_vente">
+                         <input id="Prix_vente" class="form-control" type="text" 
+                         onkeypress="Controller.AllowNumberInterger(event)" name="Prix_vente" wire:model="Prix_vente">
                        </div>
                   </div>
  
                   <div class="row">
                        <div class="form-group col-6">
                          <label for="magazin">Quantite Magazin</label>
-                         <input id="magazin" class="form-control" type="text" name="magazin" wire:model="magazin">
+                         <input id="magazin" class="form-control"
+                         onkeypress="Controller.AllowNumberInterger(event)" type="text" name="magazin" wire:model="magazin">
                        </div>
  
                        <div class="form-group col-6">
                          <label for="boutiq">Quantite Boutique</label>
-                         <input id="boutiq" class="form-control" type="text" name="boutiq" wire:model="boutiq">
+                         <input id="boutiq" class="form-control" type="text" 
+                         onkeypress="Controller.AllowNumberInterger(event)" name="boutiq" wire:model="boutiq">
                        </div>
                   </div>
  
@@ -48,18 +53,20 @@
                   <div class="row">
                        <div class="form-group col-6">
                          <label for="nbrpaquet">Quantite Par Paquet</label>
-                         <input id="nbrpaquet" class="form-control" type="text" name="nbrpaquet" wire:model="nbrpaquet">
+                         <input id="nbrpaquet" class="form-control" type="text" 
+                         onkeypress="Controller.AllowNumberInterger(event)" name="nbrpaquet" wire:model="nbrpaquet">
                        </div>
  
                        <div class="form-group col-6">
                          <label for="nbrSeuil">Quantite Seuil</label>
-                         <input id="nbrSeuil" class="form-control" type="text" name="nbrSeuil" wire:model="nbrSeuil">
+                         <input id="nbrSeuil" class="form-control" type="text"
+                         onkeypress="Controller.AllowNumberInterger(event)"  name="nbrSeuil" wire:model="nbrSeuil">
                        </div>
                   </div>
                     
                  <div class="row mr-3 ">
                       <div class="ml-auto">
-                      <button class="btn btn-primary">Enregistrer</button>
+                      <button class="btn btn-primary" id="add_article_btn_id">Enregistrer</button>
                       <button class="btn btn-secondary"  type="button" data-dismiss="modal" aria-label="Close" >Fermer</button>
                       </div>
                  </div>

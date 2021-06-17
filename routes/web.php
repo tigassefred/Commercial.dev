@@ -23,9 +23,11 @@ Route::get('/', function () {
 
 
 
+
 Route::get('/stockage', [StockageController::class, 'index'])->name('stockage.index');
 Route::post('/stockage', [StockageController::class, 'store'])->name('stockage.store');
 Route::post('/stockage/{id}', [StockageController::class, 'update'])->name('stockage.update');
+Route::get('/api/stockage', [StockageController::class, 'delete'])->name('stockage.delete');
 Route::get('/stockage/Gestion', [StockageController::class, 'index_stockage'])->name('Gestion.index');
 Route::get('/stockage/mouvement', [StockageController::class, 'index_mouvement'])->name('mouvement.index');
 
@@ -41,7 +43,17 @@ Route::view('login', 'Pages.Auth.login')->name('login');
 Route::view('password', 'Pages.Auth.password')->name('password');
 Route::post('login', [UserController::class, 'Auth'])->name('login.attemp');
 Route::post('password', [UserController::class, 'Password'])->name('login.password');
+Route::post('logout', [UserController::class, 'logout'])->name('logout');
 
+
+
+
+
+
+Route::middleware('auth')->prefix('api')->group(function(){
+    Route::get('Stockage_check_name_exist', [StockageController::class, 'index_by_name'])->name('Stockage_check_name_exist');
+    Route::get('Check_if_article_existe_edit', [StockageController::class, 'index_by_name_edit'])->name('Check_if_article_existe_edit');
+});
 
 
 

@@ -18,10 +18,12 @@
 
     
                     <div class="ml-2">
+                        <label for="">Qte en Magasin</label>
                         <div class="input-group">
                             <input class="form-control" type="text" wire:model="qte_magazin" name="qte_magazin" value="0" placeholder="Magazin"
                                 style="width:100px" id="qte_magazin".>
                             <div class="input-group-append">
+                        
                                 <select wire:model="qte_magazin_signe" class="w-auto custom-select">
                                     <option value=">">></option>
                                     <option value="<"><</option>
@@ -31,6 +33,7 @@
                         </div>
                     </div>
                     <div class="ml-2">
+                        <label for="">Qte en Boutique</label>
                         <div class="input-group">
                             <input class="form-control" type="text" name="qte_boutique" wire:model="qte_boutique" placeholder="Boutique"
                                 value="0" style="width: 100px" id="qte_boutique"  >
@@ -104,8 +107,7 @@
                                 <button class="btn btn-info btn-sm btn_edit_article"
                                 wire:click="launchToEdit('{{ $article->ref }}') " data-toggle="tooltip" data-placement="top" title="Modifier l'article" > <i class="fas fa-edit    "></i></button>
                                  <button class="btn btn-danger btn-sm ml-2"
-                                     wire:click="Delete('{{ $article->id }}') " data-toggle="tooltip" data-placement="top" title="Suppimer l'article"> <i class="fa fa-trash" aria-hidden="true"></i></button>
-                                     
+                                     wire:click="show_modal_to_delete('{{ $article->id }}') " data-toggle="tooltip" data-placement="top" title="Suppimer l'article"> <i class="fa fa-trash" aria-hidden="true"></i></button>
                                 @endcannot
                                 </div>
                             </td>

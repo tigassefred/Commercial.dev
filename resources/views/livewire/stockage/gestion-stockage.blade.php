@@ -30,14 +30,14 @@
                     </thead>
                     <tbody>
                          @foreach ($Articles as  $key => $item)
-                             <tr>
+                             <tr class="{{($item->qte_boutique < $item->qte_seuil) ? "table-warning" : ""}}">
                                  <td>{{++$key}}</td>
                                  <td>{{$item->name}}</td>
                                  <td>{{$item->qte_magasin}}</td>
                                  <td>
                                         <div class="row justify-content-center">
-                                               <button class="btn btn-info btn-sm mr-1" wire:click="countDesc({{$item->ref}})">-</button>
-                                               <input type="text"  class="text-align" wire:model='count' style="height: 15px; width:60px; text-align :center">
+                                               <button class="btn btn-info btn-sm mr-1" wire:click="countDesc('{{$item->ref}}')">-</button>
+                                               <input type="text"  class="text-align" wire:model.defer='count' style="height: 15px; width:60px; text-align :center" onkeypress="Controller.AllowNumberInterger(event)">
                                                <button class="btn btn-info btn-sm ml-1 " wire:click="countInc('{{$item->ref}}')">+</button>
                                         </div>
                                  </td>
