@@ -279,6 +279,17 @@ window.addEventListener('event-edit', function (event) {
   $('#EditArticleModal').modal('show');
   LoadTable(event.detail.response, "#form_submit_stock_edit input");
 });
+window.addEventListener('event_print_build', function (event) {
+  var params = "scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1000,height=".concat(window.screen.height, ",left=-1000,top=-1000");
+  var url = routeJS('facture'); // url = `http://127.0.0.1:8000/admin/print/Rapport_hebdo`;
+
+  url = "".concat(url, "?reference=").concat(event.detail.ref);
+  var currentPrintDialog = window.open(url, 'bsta', params);
+  window.currentPrintDialog = currentPrintDialog;
+  window.currentPrintDialog.addEventListener('afterprint', function (e) {
+    currentPrintDialog.close();
+  });
+});
 window.addEventListener('event_delete', function (event) {
   $('#DeleteArticleModal').modal('show');
   $('#delete_article_modal input[type=hidden]').val(event.detail.response);

@@ -305,6 +305,24 @@ window.addEventListener('event-edit', event => {
     LoadTable(event.detail.response,"#form_submit_stock_edit input")
 })
 
+window.addEventListener('event_print_build', event => {
+ 
+    let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1000,height=${window.screen.height},left=-1000,top=-1000`;
+
+        var url = routeJS('facture');
+
+       // url = `http://127.0.0.1:8000/admin/print/Rapport_hebdo`;
+
+        url = `${url}?reference=${event.detail.ref}`;
+
+        var currentPrintDialog = window.open(url, 'bsta', params);
+        window.currentPrintDialog = currentPrintDialog;
+        window.currentPrintDialog.addEventListener('afterprint',function(e){
+
+            currentPrintDialog.close();
+        });
+})
+
 window.addEventListener('event_delete', event => {
     $('#DeleteArticleModal').modal('show');
     $('#delete_article_modal input[type=hidden]').val(event.detail.response)

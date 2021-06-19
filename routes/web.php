@@ -37,6 +37,9 @@ Route::get('/', function () {
    Route::get('liste_vente', [VenteController::class , 'getAll'])->name('getAll');
 
 
+   Route::get('/Caisse/Terminal',[CaisseController::class ,  'index'])->name('caisse.index');
+   Route::get('/Caisse/historique',[CaisseController::class ,  'liste'])->name('caisse.liste');
+
 
 
 

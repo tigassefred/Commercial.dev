@@ -180,6 +180,26 @@ class VenteController {
                 VenteController.get_ten_last_vente();
               }
           });
+        }
+
+
+      static print(ref_vente)
+      {
+         
+        let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1000,height=${window.screen.height},left=-1000,top=-1000`;
+
+        var url = routeJS('facture');
+
+       // url = `http://127.0.0.1:8000/admin/print/Rapport_hebdo`;
+
+        url = `${url}?reference=${ref_vente}`;
+
+        var currentPrintDialog = window.open(url, 'bsta', params);
+        window.currentPrintDialog = currentPrintDialog;
+        window.currentPrintDialog.addEventListener('afterprint',function(e){
+
+            currentPrintDialog.close();
+        });
       }
 
 }
