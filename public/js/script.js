@@ -283,5 +283,40 @@ window.addEventListener('event_delete', function (event) {
   $('#DeleteArticleModal').modal('show');
   $('#delete_article_modal input[type=hidden]').val(event.detail.response);
 });
+window.addEventListener('event_add_article', function (event) {
+  $("#CreateArticleModal").modal('show');
+});
+window.addEventListener('event_add_client', function (event) {
+  $("#CreateClient").modal('show');
+});
+window.addEventListener('event_cash_pay', function (event) {
+  $("#Paiement_vente").modal('show');
+  var id = event.detail.reference;
+  $.get("/api/Vente/show/" + id, function (data, textStatus, jqXHR) {
+    $('#Paiement_vente #reference').val(data.reference);
+    $('#Paiement_vente #Date_vente').val(data.Date_vente);
+    $('#Paiement_vente #Vendeur').val(data.Vendeur);
+    $('#Paiement_vente #client').val(data.client);
+    $('#Paiement_vente #NbArticle').val(data.NbArticle);
+    $('#Paiement_vente #valeur').val(data.valeur);
+    $('#Paiement_vente #somme').val(0);
+    $('#Paiement_vente #monaie').val(0);
+  });
+});
+$('#voirVente').on('show.bs.modal', function (event) {
+  VenteController.get_ten_last_vente();
+});
+$('#Vente_modal_client').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var reference = $(button).attr('reference');
+  var vente = $(button).attr('vente');
+  $('#hidden_vente_modal_client').val(vente);
+  $.get(routeJS("client.index"), function (data, textStatus, jqXHR) {
+    $('#vente_modal_select_client').empty();
+    data.forEach(function (element) {
+      $('#vente_modal_select_client').append("\n                    <option value=".concat(element.id, " ").concat(element.id == reference ? "selected" : "", ">").concat(element.name, "  </option>\n                    "));
+    });
+  }); // Use above variables to manipulate the DOM
+});
 /******/ })()
 ;

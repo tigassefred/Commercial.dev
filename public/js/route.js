@@ -4,13 +4,19 @@ var app_route_list = {
   'Stockage_check_name_exist' : 'api/Stockage_check_name_exist',
   'stockage.delete' : 'api/stockage',
   'Check_if_article_existe_edit' : 'api/Check_if_article_existe_edit',
+  'caisse.store' : 'api/caisse/store',
+  'facture' : 'facture',
+  'getAll' : 'liste_vente',
+  'client.index' : 'api/client',
+  'client.update_client' : 'api/client/update',
+  'vente.abandonner' : 'api/vente/giveup',
  
     
 };
 
 function routeJS(name){
 
- let app_base_url ="";// '127.0.0.1:8000';
+ let app_base_url = ""; //'127.0.0.1:8000';
  let the_url = app_route_list[name];
 
  if(app_base_url.substr(-1)=="/"){

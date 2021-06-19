@@ -311,4 +311,53 @@ window.addEventListener('event_delete', event => {
 
 })
 
+window.addEventListener('event_add_article', event => {
+    $(`#CreateArticleModal`).modal('show');
+})
+window.addEventListener('event_add_client', event => {
+    $(`#CreateClient`).modal('show');
+})
+window.addEventListener('event_cash_pay', event => {
+    $(`#Paiement_vente`).modal('show');
+    let id = event.detail.reference;
+     $.get("/api/Vente/show/"+id,
+         function (data, textStatus, jqXHR) {
+             $('#Paiement_vente #reference').val(data.reference);
+             $('#Paiement_vente #Date_vente').val(data.Date_vente);
+             $('#Paiement_vente #Vendeur').val(data.Vendeur);
+             $('#Paiement_vente #client').val(data.client);
+             $('#Paiement_vente #NbArticle').val(data.NbArticle);
+             $('#Paiement_vente #valeur').val(data.valeur);
+             $('#Paiement_vente #somme').val(0)
+             $('#Paiement_vente #monaie').val(0)
+         },
+     );
+})
+
+$('#voirVente').on('show.bs.modal', event => {
+     VenteController.get_ten_last_vente();
+});
+
+
+$('#Vente_modal_client').on('show.bs.modal', event => {
+     var button = $(event.relatedTarget);
+     let reference =  $(button).attr('reference')
+     let vente =  $(button).attr('vente')
+     $('#hidden_vente_modal_client').val(vente);
+     $.get(routeJS(`client.index`),
+         function (data, textStatus, jqXHR) {
+            $('#vente_modal_select_client').empty();
+            data.forEach(element => {
+                $('#vente_modal_select_client').append(
+                    `
+                    <option value=${element.id} ${element.id == reference ? "selected":""}>${element.name}  </option>
+                    `
+                ); 
+            });
+             
+         },
+     );
+    // Use above variables to manipulate the DOM
+    
+});
 

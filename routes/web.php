@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Caisse\CaisseController;
+use App\Http\Controllers\ClientController;
 use App\Http\Livewire\User\TabList;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -25,6 +27,14 @@ Route::get('/', function () {
 
 /****************************VENTES**********************************************/
    Route::get('/Vente/Terminal', [VenteController::class , 'index'])->name('Vente.index');
+   Route::get('/api/Vente/show/{id}', [VenteController::class , 'show'])->name('Vente.show');
+   Route::post('/api/caisse/store' , [CaisseController::class , 'store'])->name('caisse.store');
+   Route::get('/api/client' , [ClientController::class , 'index'])->name('client.index');
+   Route::post('/api/client/update' , [ClientController::class , 'update_client'])->name('client.update_client');
+   Route::post('/api/vente/giveup' , [CaisseController::class , 'abandonner'])->name('vente.abandonner');
+
+   Route::get('facture' , [CaisseController::class , 'facture'])->name('facture');
+   Route::get('liste_vente', [VenteController::class , 'getAll'])->name('getAll');
 
 
 

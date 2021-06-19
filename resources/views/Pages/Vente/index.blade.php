@@ -1,5 +1,6 @@
 @extends('Layouts.app', ['titre'=>'Commercial - Vente'])
 @section('content')
+
 @push('custum-styles')
     <style>
           .vente_input{
@@ -9,9 +10,12 @@
           }
     </style>
 @endpush
-<div>
 
-</div>
+
+@include('Pages.Stockage.Modal.create_article')
+@include('Pages.Client.modal.create_client')
+@include('Pages.Vente.modal.Paiement')
+@include('Pages.Vente.modal.listeVente')
 @livewire('vente.vente-system')
     
 @push('custom-scripts')
