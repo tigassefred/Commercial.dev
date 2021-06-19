@@ -36,7 +36,7 @@
                                  <td>{{$item->qte_magasin}}</td>
                                  <td>
                                         <div class="row justify-content-center">
-                                               <button class="btn btn-info btn-sm mr-1" wire:click="countDesc('{{$item->ref}}')">-</button>
+                                               {{-- <button class="btn btn-info btn-sm mr-1" wire:click="countDesc('{{$item->ref}}')">-</button> --}}
                                                <input type="text"  class="text-align" wire:model.defer='count' style="height: 15px; width:60px; text-align :center" onkeypress="Controller.AllowNumberInterger(event)">
                                                <button class="btn btn-info btn-sm ml-1 " wire:click="countInc('{{$item->ref}}')">+</button>
                                         </div>

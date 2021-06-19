@@ -33,7 +33,7 @@ class GestionStockage extends Component
             if($article->qte_magasin > 0)
             {
                 $article->qte_magasin -=1;   
-                $article->qte_boutique +=1;  
+                $article->qte_boutique +=$article->qte_seuil;  
             }
 
         }   else{
@@ -41,7 +41,7 @@ class GestionStockage extends Component
                if($this->count <0){$this->count *= (-1);}
                if($this->count > $article->qte_magasin){$this->count = $article->qte_magasin;}
                 $article->qte_magasin -=$this->count;   
-                $article->qte_boutique +=$this->count; 
+                $article->qte_boutique +=$this->count * $article->qte_seuil; 
         }
         $article->save(); 
         $this->count = 0;
