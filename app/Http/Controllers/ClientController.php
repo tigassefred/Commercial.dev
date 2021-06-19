@@ -24,6 +24,14 @@ class ClientController extends Controller
         return response()->json(Request());
     }
 
+    public function store_vente()
+    {
+        DB::table('clients')->insert([
+            'name'=>Request('name'),
+            'numero1'=>Request('numero'),
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

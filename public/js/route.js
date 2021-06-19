@@ -10,6 +10,7 @@ var app_route_list = {
   'client.index' : 'api/client',
   'client.update_client' : 'api/client/update',
   'vente.abandonner' : 'api/vente/giveup',
+  'client.store.vente' : 'api/client/save',
  
     
 };

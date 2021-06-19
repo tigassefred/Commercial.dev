@@ -202,4 +202,28 @@ class VenteController {
         });
       }
 
+
+      static save_client()
+      {
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+          let name =  $('#CreateClient #name').val();
+          let numero =  $('#CreateClient #numero').val();
+    
+          if(name.trim().length  > 0){
+          $.ajax({
+              type: "POST",
+              url: routeJS('client.store.vente'),
+              data: {'name': name, 'numero':numero},
+              success: function (response) {
+                   $('#CreateClient').modal('hide') 
+              }
+          });
+        }
+      }
+
 }

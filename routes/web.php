@@ -32,6 +32,7 @@ Route::get('/', function () {
    Route::get('/api/client' , [ClientController::class , 'index'])->name('client.index');
    Route::post('/api/client/update' , [ClientController::class , 'update_client'])->name('client.update_client');
    Route::post('/api/vente/giveup' , [CaisseController::class , 'abandonner'])->name('vente.abandonner');
+   Route::post('/api/client/save' , [ClientController::class , 'store_vente'])->name('client.store.vente');
 
    Route::get('facture' , [CaisseController::class , 'facture'])->name('facture');
    Route::get('liste_vente', [VenteController::class , 'getAll'])->name('getAll');
