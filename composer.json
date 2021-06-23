@@ -30,7 +30,10 @@
 
         "files": [
 
-            "app/helpers.php"
+            "app/helpers.php",
+            "app/Librairies/Article.php",
+            "app/Librairies/Reference.php",
+            "app/Librairies/Utilisateur.php"
         ],
 
         "psr-4": {

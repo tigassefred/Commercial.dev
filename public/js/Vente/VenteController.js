@@ -151,8 +151,6 @@ class VenteController {
                         
                         `
                     : (element.status === 'traite') ? `
-
-                           <div class=""d-flex justifu-content-center"> <button class="btn btn-success btn-sm">Imprimer</button>
                            <div/>` : `<span class="badge badge-danger p-3">Abandonner</span>`
                        }
                   </td>
