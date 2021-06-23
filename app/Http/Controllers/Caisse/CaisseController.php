@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Caisse;
 
+
 use App\Models\Caisse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+
 
 class CaisseController extends Controller
 {
@@ -28,7 +30,7 @@ class CaisseController extends Controller
             'caissier_id'=>Auth::user()->id,
             'valeur'=>$resquest->valeur,
             'sommes_remise'=>$resquest->sommes,
-            'reste'=> $resquest->sommes - $resquest->valeur,
+            'reste'=> ($resquest->sommes - $resquest->valeur) < 0 ? (-1*($resquest->sommes - $resquest->valeur)) : 0 ,
             'created_at'=>now(),
             'updated_at'=>now(),
         ];
@@ -49,7 +51,7 @@ class CaisseController extends Controller
 
     public function facture()
     {
-        return view('Pages.Vente.facture');
+          Gen_facture();
     }
 
     public function abandonner(){

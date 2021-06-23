@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
+use App\Models\Parametre;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class ClientController extends Controller
+class ParametreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,21 +14,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-      return Response()->json(Client::all());
-    }
-
-    public function update_client(){
-
-        DB::table('paniers')->where('ref',Request('ref_vente'))->update(['id_client'=>Request('id_client')]);
-        return response()->json(Request());
-    }
-
-    public function store_vente()
-    {
-        DB::table('clients')->insert([
-            'name'=>Request('name'),
-            'numero1'=>Request('numero'),
-        ]);
+        //
     }
 
     /**
@@ -56,10 +41,10 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Parametre  $parametre
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show(Parametre $parametre)
     {
         //
     }
@@ -67,10 +52,10 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Parametre  $parametre
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Parametre $parametre)
     {
         //
     }
@@ -79,10 +64,10 @@ class ClientController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Parametre  $parametre
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Parametre $parametre)
     {
         //
     }
@@ -90,10 +75,10 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Parametre  $parametre
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(Parametre $parametre)
     {
         //
     }

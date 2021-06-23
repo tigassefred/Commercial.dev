@@ -185,6 +185,7 @@ class VenteSystem extends Component
         $this->valeur_total ="";
         $this->quantite_article= 0; 
         $this->qte_article =0;
+        $this->remise =0;
         $this->valeur_panier = 0;
         $this->client_id = 1;
         $this->client_search = "Client Ordinaire";
@@ -248,7 +249,7 @@ class VenteSystem extends Component
                         'id_vendeurs'=>Auth::user()->id,
                         'id_client'=> (intval($this->client_id) > 1) ?  $this->client_id : 1,
                         'valeurs'=>$this->valeur_panier,
-                        'remise'=>$this->remise,
+                        'remise'=>trim($this->remise) === "" ? 0 : $this->remise,
                         'status'=>'non traite',
                    ]);
             $tableau_article_vente = $this->prepare_item_to_save($this->Panier);

@@ -8,7 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockageController;
 use App\Http\Controllers\UserRoleController;
 use App\Http\Controllers\Ventes\VenteController;
-
+use Illuminate\Routing\RouteAction;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +41,7 @@ Route::get('/', function () {
    Route::get('/Caisse/Terminal',[CaisseController::class ,  'index'])->name('caisse.index');
    Route::get('/Caisse/historique',[CaisseController::class ,  'liste'])->name('caisse.liste');
 
+  
 
 
 
