@@ -14,6 +14,7 @@ class CaisseSystem extends Component
     public $Selling_ref,$Selling_value,$remise,$monnaie;
 
     public $Encaissement,$traite,$abandonne,$caisse;
+    public $valeur;
 
     public function mount()
     {
@@ -33,11 +34,13 @@ class CaisseSystem extends Component
                         ->select('paniers.*','lastname','firstname','users.name')
                         ->orderBy('paniers.created_at','DESC')
                         ->get()->toArray();
-           $this->traite = Panier::where('status','traite')->count();             
-           $this->abandonne = Panier::where('status','abandonne')->count();   
+           $this->traite = Panier::where('status','traite')->
+                            whereRaw('dayofYear(created_at) = dayofyear(now())')->count();             
+           $this->abandonne = Panier::where('status','abandonne')->
+                             whereRaw('dayofYear(created_at) = dayofyear(now())')->count();   
            
            $this->caisse =  DB::table('caisses')
-           ->select(DB::raw('sum(valeur)-sum(reste) as somme'))->whereRaw('dayofyear(created_at) =  dayofyear(now())')->get();
+                             ->select(DB::raw('sum(valeur)-sum(reste) as somme'))->whereRaw('dayofyear(created_at) =  dayofyear(now())')->get();
 
 
     }
@@ -50,11 +53,19 @@ class CaisseSystem extends Component
         $this->Selling_value = $P->valeurs;
         $this->remise = $P->remise;
         $this->monnaie = 0;
+        $this->valeur = $P->valeurs;
     }
 
     public function updatingEncaissement($value)
     {
-      $this->monnaie = $value -  $this->Selling_value ;
+      
+        if(trim($value) !== ""){
+
+            $this->monnaie = $value  -  $this->Selling_value ;
+        }else{
+            $this->monnaie = 0;
+            $value = 0;
+        }
     }
 
     public function Paid()
@@ -144,6 +155,7 @@ class CaisseSystem extends Component
                 $this->remise = 0;
                 $this->monnaie = 0;
                 $this->Encaissement = 0;
+                $this->valeur = "";
               }
         }
         public function Encaissement_credit_facture()
@@ -156,23 +168,25 @@ class CaisseSystem extends Component
                 $this->remise = 0;
                 $this->monnaie = 0;
                 $this->Encaissement = 0;
+                $this->valeur = "";
 
                 $this->dispatchBrowserEvent('event_print_build',['ref'=>$ref]);
               }
         }
 
         public function Abandonner(){
-            if(Str::length($this->Selling_ref) > 5){
-
+            if(Str::length($this->Selling_ref) > 3){
                 $P = Panier::where('ref',$this->Selling_ref)->first();
                 $P->status = 'abandonne';
                 $P->save();
                 $this->listeDesVente();
+            } 
                 $this->Selling_ref = '';
                 $this->Selling_value = '';
                 $this->remise = 0;
                 $this->monnaie = 0;
                 $this->Encaissement = 0;
-            }   
+                $this->valeur = "";
+             
         }
 }

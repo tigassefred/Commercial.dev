@@ -1,7 +1,12 @@
 <div>
     <div class="card mt-5" style="height: ">
-        <div class="card-header">
-          PAIEMENT
+        <div class=" px-3 card-header">
+          <div class="row px-3">
+                  PAIEMENT
+                  <div class="ml-auto font-weight-bold" style="font-size: 20px">
+                    {{$valeur}} 
+                  </div>
+          </div>
         </div>
          <div class="card-body pt-0">
           <div class="row mt-3">
@@ -12,7 +17,7 @@
                <label for="" class="Caisse_label">MONTANT ENCAISSER</label>
                <div class="input-group">
                  <input class="form-control font-weight-bold text-center" wire:model="Encaissement"
-                 onkeypress="javascript:return isNumberKey(event)" type="text" name="" value="25000">
+                    onkeypress="Controller.AllowNumberInterger(event)" type="text" name="" value="25000">
                  <div class="input-group-append">
                    <span class="input-group-text" id="my-addon">FCFA</span>
                  </div>
@@ -54,7 +59,6 @@
          </div>
     
     
-  
           <div class="d-flex justify-content-between">
                  <div class="btn-group" role="group" aria-label="Button group">
                        <button class="btn btn-success ml-3"  id="btnPay" wire:click="Encaissement"> <i class="fas fa-hand-holding-usd    "></i> </button>

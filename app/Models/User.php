@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -49,5 +50,10 @@ class User extends Authenticatable
     public function Role()
     {
         return $this->belongsToMany('App\Models\Role','user_role_relations','user_id','role_id');
+    }
+
+    public function getFullnameAttribute()
+    {
+        return Str::limit($this->lastname .' '.$this->firstname,17);
     }
 }

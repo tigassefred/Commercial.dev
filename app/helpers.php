@@ -75,6 +75,12 @@ function Gen_facture()
         .td-iner {
             text-align: right;
         }
+        .font-weight-bold{
+            font-weight: bold;
+        }
+        .italic{
+            font-style: italic;
+        }
     </style>
 
     <page backright="3mm">
@@ -132,8 +138,8 @@ function Gen_facture()
     </tr>
 
     <tr>
-        <td style="width: 50%;">Pour: <strong>Achat de Materiel</strong> </td>
-        <td style="width: 50%;">Vendeur(se): <strong><?php if (isset($data))  echo $data->Vendeur->lastname ?></strong> </td>
+        <td style="width: 50%;">Pour: <strong>Achat de matériels</strong> </td>
+        <td style="width: 50%;">Vendeur(se): <strong><?php if (isset($data))  echo $data->Vendeur->fullname ?></strong> </td>
     </tr>
 </table>
 
@@ -182,12 +188,12 @@ function Gen_facture()
 
 
 </table>
-<p>Reste à payer : <span class="font-weight-bold"><?php if(isset($Caisse)) echo $Caisse->reste ;  ?> </span>FCFA</p>
+<p class="italic">Reste à payer : <span class=" font-weight-bold"><?php if(isset($Caisse)) echo $Caisse->reste ;  ?> </span>FCFA</p>
 
-<table>
+<table style="margin-top : 50px ">
     <tr>
-        <td style="width : 60%">Le Responsable</td>
-        <td style="width : 50%; text-align : center">Le Client</td>
+        <td style="width : 60%"></td>
+        <td style="width : 50%; text-align : center">La Caisse</td>
     </tr>
 
     <tr>
